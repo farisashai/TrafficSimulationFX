@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="870.0" prefWidth="1340.0" style="-fx-background-color: linear-gradient(to right, #642b73, #c6426e);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="803.0" fitWidth="1340.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@map.jpg" />
+         </image>
+      </ImageView>
+      <HBox layoutY="807.0" prefHeight="67.0" prefWidth="1340.0" spacing="50.0">
+         <children>
+            <Label fx:id="period" alignment="CENTER" prefHeight="45.0" prefWidth="120.0" style="-fx-background-color: rgba(255,255,255,0.8);" text="Period: 0">
+               <font>
+                  <Font name="Avenir Light" size="19.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="45.0" prefWidth="120.0" style="-fx-background-color: rgba(255,255,255,0.8);" text="(0,0)" fx:id="x">
+               <font>
+                  <Font name="Avenir Light" size="19.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="genderButton" buttonType="RAISED" focusTraversable="false" prefHeight="45.0" prefWidth="210.0" style="-fx-background-color: rgba(255,200,100,1);" text="Gender Colors: Off">
+               <font>
+                  <Font name="Avenir Light" size="19.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="evacuate" buttonType="RAISED" focusTraversable="false" layoutX="1140.0" layoutY="14.0" prefHeight="45.0" prefWidth="130.0" style="-fx-background-color: rgba(255,200,100,1);" text="Evacuate">
+               <font>
+                  <Font name="Avenir Light" size="19.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="next" buttonType="RAISED" focusTraversable="false" prefHeight="45.0" prefWidth="160.0" style="-fx-background-color: rgba(255,200,100,1);" text="Next Class">
+               <font>
+                  <Font name="Avenir Light" size="19.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="previous" buttonType="RAISED" focusTraversable="false" prefHeight="45.0" prefWidth="160.0" style="-fx-background-color: rgba(255,200,100,1);" text="Previous Class">
+               <font>
+                  <Font name="Avenir Light" size="19.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="pause" buttonType="RAISED" focusTraversable="false" prefHeight="45.0" prefWidth="100.0" style="-fx-background-color: rgba(255,200,100,1);" text="Pause">
+               <font>
+                  <Font name="Avenir Light" size="19.0" />
+               </font>
+            </JFXButton>
+         </children>
+         <padding>
+            <Insets left="10.0" top="4.0" />
+         </padding>
+      </HBox>
+      <JFXButton fx:id="settings" buttonType="RAISED" focusTraversable="false" layoutX="1169.0" layoutY="723.0" prefHeight="56.0" prefWidth="155.0" style="-fx-background-color: #bbb;" text="Settings">
+         <font>
+            <Font name="Avenir Light" size="19.0" />
+         </font>
+      </JFXButton>
+      <Label fx:id="stairB" alignment="CENTER" layoutX="393.0" layoutY="246.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: rgb(200,200,200); -fx-background-radius: 40;" text="0">
+         <font>
+            <Font name="Avenir Light" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="stairA" alignment="CENTER" layoutX="286.0" layoutY="118.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: rgb(200,200,200); -fx-background-radius: 40;" text="0">
+         <font>
+            <Font name="Avenir Light" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="stairC" alignment="CENTER" layoutX="379.0" layoutY="435.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: rgb(200,200,200); -fx-background-radius: 40;" text="0">
+         <font>
+            <Font name="Avenir Light" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="stairD" alignment="CENTER" layoutX="236.0" layoutY="515.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: rgb(200,200,200); -fx-background-radius: 40;" text="0">
+         <font>
+            <Font name="Avenir Light" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="stairF" alignment="CENTER" layoutX="515.0" layoutY="460.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: rgb(200,200,200); -fx-background-radius: 40;" text="0">
+         <font>
+            <Font name="Avenir Light" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="stairE" alignment="CENTER" layoutX="515.0" layoutY="652.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: rgb(200,200,200); -fx-background-radius: 40;" text="0">
+         <font>
+            <Font name="Avenir Light" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="stairG" alignment="CENTER" layoutX="620.0" layoutY="350.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: rgb(200,200,200); -fx-background-radius: 40;" text="0">
+         <font>
+            <Font name="Avenir Light" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="stairH" alignment="CENTER" layoutX="764.0" layoutY="350.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: rgb(200,200,200); -fx-background-radius: 40;" text="0">
+         <font>
+            <Font name="Avenir Light" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="stairI" alignment="CENTER" layoutX="881.0" layoutY="325.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: rgb(200,200,200); -fx-background-radius: 40;" text="0">
+         <font>
+            <Font name="Avenir Light" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="stairJ" alignment="CENTER" layoutX="726.0" layoutY="151.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: rgb(200,200,200); -fx-background-radius: 40;" text="0">
+         <font>
+            <Font name="Avenir Light" size="17.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
