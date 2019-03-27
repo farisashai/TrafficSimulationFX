@@ -7,9 +7,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="700.0" style="-fx-background-color: linear-gradient(to bottom, #f9fcff, #d8dfe2, #b9c3c2, #9ea7a0, #898b80);" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="700.0" style="-fx-background-color: linear-gradient(to bottom right, #eee, #999);" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label alignment="CENTER" prefHeight="70.0" prefWidth="700.0" style="-fx-background-color: rgba(255,255,255,0.2);" text="Settings" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Label alignment="CENTER" prefHeight="70.0" prefWidth="700.0" text="Settings" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
             <Font name="Avenir Light" size="31.0" />
          </font>
@@ -84,22 +84,22 @@
                   <Font name="Avenir Light" size="18.0" />
                </font>
             </Label>
-             <JFXSlider id="a" fx:id="population" blockIncrement="1.0" majorTickUnit="2000.0" max="10000.0" maxWidth="400.0" prefHeight="38.0" prefWidth="500.0" showTickLabels="true" showTickMarks="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-             <JFXSlider id="b" fx:id="time" blockIncrement="0.1" majorTickUnit="10.0" max="50.0" maxWidth="400.0" minorTickCount="2" prefHeight="38.0" prefWidth="500.0" showTickLabels="true" showTickMarks="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+             <JFXSlider id="typeA" fx:id="population" blockIncrement="1.0" majorTickUnit="2000.0" max="10000.0" maxWidth="400.0" prefHeight="38.0" prefWidth="500.0" showTickLabels="true" showTickMarks="true" value="1000.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+             <JFXSlider id="typeB" fx:id="time" blockIncrement="0.1" majorTickUnit="10.0" max="50.0" maxWidth="400.0" minorTickCount="2" prefHeight="38.0" prefWidth="500.0" showTickLabels="true" showTickMarks="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
 
-             <JFXSlider id="c" fx:id="studentradius" blockIncrement="0.1" majorTickUnit="1.0" max="5.0" maxWidth="400.0" prefHeight="38.0" prefWidth="500.0" showTickLabels="true" showTickMarks="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+             <JFXSlider id="typeA" fx:id="studentradius" blockIncrement="0.1" majorTickUnit="1.0" max="5.0" maxWidth="400.0" prefHeight="38.0" prefWidth="500.0" showTickLabels="true" showTickMarks="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
 
-             <JFXSlider id="d" fx:id="classradius" blockIncrement="0.1" majorTickUnit="5.0" max="30.0" maxWidth="400.0" minorTickCount="1" prefHeight="38.0" prefWidth="500.0" showTickLabels="true" showTickMarks="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+             <JFXSlider id="typeB" fx:id="classradius" blockIncrement="0.1" majorTickUnit="5.0" max="30.0" maxWidth="400.0" minorTickCount="1" prefHeight="38.0" prefWidth="500.0" showTickLabels="true" showTickMarks="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
 
-             <JFXSlider id="e" fx:id="stairwidth" blockIncrement="1.0" majorTickUnit="5.0" max="25.0" maxWidth="400.0" prefHeight="38.0" prefWidth="500.0" showTickLabels="true" showTickMarks="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+             <JFXSlider id="typeA" fx:id="stairwidth" blockIncrement="1.0" majorTickUnit="5.0" max="25.0" maxWidth="400.0" prefHeight="38.0" prefWidth="500.0" showTickLabels="true" showTickMarks="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
 
-             <JFXSlider id="f" fx:id="period" blockIncrement="1.0" majorTickUnit="1.0" max="6.0" maxWidth="400.0" minorTickCount="0" prefHeight="38.0" prefWidth="410.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+             <JFXSlider id="typeB" fx:id="period" blockIncrement="1.0" majorTickUnit="1.0" max="6.0" maxWidth="400.0" minorTickCount="0" prefHeight="38.0" prefWidth="410.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
 
-            <JFXSlider id="g" fx:id="zero" blockIncrement="1.0" maxWidth="400.0" minorTickCount="5" prefHeight="38.0" prefWidth="500.0" showTickLabels="true" showTickMarks="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+            <JFXSlider id="typeA" fx:id="zero" blockIncrement="1.0" maxWidth="400.0" minorTickCount="5" prefHeight="38.0" prefWidth="500.0" showTickLabels="true" showTickMarks="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
 
-            <JFXSlider id="h" fx:id="five" blockIncrement="1.0" maxWidth="400.0" minorTickCount="5" prefHeight="38.0" prefWidth="500.0" showTickLabels="true" showTickMarks="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+            <JFXSlider id="typeB" fx:id="five" blockIncrement="1.0" maxWidth="400.0" minorTickCount="5" prefHeight="38.0" prefWidth="500.0" showTickLabels="true" showTickMarks="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
 
-            <JFXSlider id="i" fx:id="six" blockIncrement="1.0" maxWidth="400.0" minorTickCount="5" prefHeight="38.0" prefWidth="500.0" showTickLabels="true" showTickMarks="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+            <JFXSlider id="typeA" fx:id="six" blockIncrement="1.0" maxWidth="400.0" minorTickCount="5" prefHeight="38.0" prefWidth="500.0" showTickLabels="true" showTickMarks="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
 
          </children>
       </GridPane>
