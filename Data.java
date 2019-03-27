@@ -5,13 +5,11 @@ class Data {
     static double percentFifth = 80;
     static double percentSixth = 65;
     static int studentPopulation = 2600; //num students
-    static boolean randSpeedOn = true; //true = unique speed per student
-    static int defaultSpeed = 1; //base speed = 1
-    static double speedRange = 15; //percentage
-    static double avgTime = 20; //seconds
-    static double studentRadius = 2; //circle radius
-    static double classRadius = 18; //room radius
-    static double stairRadius = 7; // staircase width
+    static double speedRange = 1; //percentage
+    static double avgTime = 15; //seconds
+    static double studentRadius = 1.6; //circle radius
+    static double classRadius = 17; //room radius
+    static double stairRadius = 7.5; // staircase width
 
     static String[][] ROOMS = {
                     {"S10","364","441"},
@@ -105,7 +103,7 @@ class Data {
                     {"P223","847","57","760","170"},
                     {"P224","847","92","760","170"},
                     {"P225","847","132","760","170"},
-                    {"EVACUATION","1060","60","130"},
+                    {"EVACUATION","1110","90","130"},
                     {"ENTRANCE","450","160","20"},
                     {"ENTRANCE","420","560","20"}
     };
