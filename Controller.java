@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -20,20 +21,21 @@ public class Controller implements Initializable {
     private int currentPeriod;
     private boolean paused = false;
     @FXML private AnchorPane pane;
-    @FXML private Label period,x;
-    @FXML private Button genderButton, next, previous, pause, evacuate, settings;
+    @FXML private Label period;
+    @FXML private Button next, previous, pause, evacuate, settings;
+    @FXML private ToggleButton genderToggle;
     @FXML private Label stairA, stairB, stairC, stairD, stairE, stairF, stairG, stairH, stairI, stairJ;
     private Label[] stairs;
     public Controller(int currentPeriod) {
         this.currentPeriod = currentPeriod;
     }
     @Override public void initialize(URL location, ResourceBundle resources) {
+        Database.initialize();
         stairs = new Label[] {stairA, stairB, stairC, stairD, stairE, stairF, stairG, stairH, stairI, stairJ};
+        AtomicBoolean aa = new AtomicBoolean();
         period.setText("Period: " + currentPeriod);
-        pane.setOnMouseMoved(e -> x.setText("(" + (int)e.getX() + ", " + (int)e.getY() + ")"));
-        genderButton.setOnAction(event -> {
+        genderToggle.setOnMouseClicked(event -> {
             genderColorOn = !genderColorOn;
-            genderButton.setText("Gender Color: " + (genderColorOn ? "On" : "Off"));
             for (Student s: students)
                 s.setGenderColorEnabled(genderColorOn);
         });
@@ -109,7 +111,6 @@ public class Controller implements Initializable {
             }
             settingsStage.show();
         });
-        AtomicBoolean aa = new AtomicBoolean();
         evacuate.setOnAction(event -> {
             aa.set(true);
             for (Student s1: students) {
@@ -119,12 +120,14 @@ public class Controller implements Initializable {
                 }
                 if (s1.getCurrentClass() != null && s1.getCurrentClass().equals(Database.getRoom("EVACUATION"))) {
                     aa.set(false);
+                    break;
                 }
             }
             if (aa.get()) {
                 Database.resetStairCounters();
                 for (Student s : students)
-                    s.goToRoom(Database.getRoom("EVACUATION"));
+                    if (s.getCurrentClass() != null)
+                        s.goToRoom(Database.getRoom("EVACUATION"));
                 List<Staircase> list = Database.getStaircaseList();
                 for (Staircase s: list)
                     stairs[list.indexOf(s)].setText(""+s.getStudentCounter());
@@ -132,10 +135,10 @@ public class Controller implements Initializable {
         });
         students = new LinkedList<>();
         for (int i = 0; i < Data.studentPopulation; i++)
-            students.add(new Student(Math.random() < 0.5,Data.studentRadius, Data.randSpeedOn ? Data.defaultSpeed + (Math.random() * ((Data.speedRange/100))): Data.defaultSpeed,Database.generateSchedule(),currentPeriod));
+            students.add(new Student(Math.random() < 0.5,Data.studentRadius, 1+ (Math.random() * ((Data.speedRange/100))),Database.generateSchedule(),currentPeriod));
         pane.getChildren().addAll(students);
-        genderButton.setText("Gender Color: " + (genderColorOn ? "On" : "Off"));
-        for (Student st: students)
-            st.setGenderColorEnabled(genderColorOn);
+        genderToggle.setSelected(genderColorOn);
+        for (Student s: students)
+            s.setGenderColorEnabled(genderColorOn);
     }
 }
