@@ -23,10 +23,9 @@ public class Student extends Circle {
         this.schedule = schedule;
         this.currentPeriod = currentPeriod;
         currentClass = schedule[currentPeriod];
-        int[] start = currentClass == null ? new int[]{0, 0} : currentClass.randSpotInside();
+        int[] start = currentClass == null ? new int[]{-1, -1} : currentClass.randSpotInside();
         setCenterX(start[0]);
         setCenterY(start[1]);
-
     }
     void nextPeriod() {
         try {
@@ -43,33 +42,51 @@ public class Student extends Circle {
         }
     }
     void goToRoom(Room nextClass) {
-
-        Path p = new Path();
-        PathTransition transition = new PathTransition();
-
         if (nextClass == null) {
-            p.getElements().add(new MoveTo(0, 0));
+            if (currentClass != null) {
+                Path p = new Path();
+                PathTransition transition = new PathTransition();
+                int[] start = new int[]{(int) (getCenterX() + getTranslateX()), (int) (getCenterY() + getTranslateY())};
+                int[] end = Database.getRandRoom("ENTRANCE").randSpotInside();
+                p.getElements().add(new MoveTo(start[0], start[1]));
+                if (!currentClass.isUpstairs())
+                    p.getElements().add(new LineTo(end[0], end[1]));
+                else {
+                    Staircase nearestStaircase = Database.getNearestStaircase(currentClass);
+                    int[] bottom = Room.randSpotInside(nearestStaircase.getBottomX(), nearestStaircase.getBottomY(), Data.stairRadius);
+                    int[] top = Room.randSpotInside(nearestStaircase.getTopX(), nearestStaircase.getTopY(), Data.stairRadius);
+                    p.getElements().add(new LineTo(top[0], top[1]));
+                    p.getElements().add(new LineTo(bottom[0], bottom[1]));
+                    p.getElements().add(new LineTo(end[0], end[1]));
+                }
+                double time = Database.distBtwn(start[0], start[1], end[0], end[1]) * Data.avgTime / (500. * walkingSpeed);
+                currentAnimation = transition;
+                transition.setPath(p);
+                transition.setNode(this);
+                transition.setDuration(Duration.seconds(time));
+                transition.setOnFinished(event -> {
+                    currentAnimation = null;
+                    currentClass = nextClass;
+                    setTranslateX(-1 - getCenterX());
+                    setTranslateY(-1 - getCenterY());
 
-            transition.setPath(p);
-            transition.setNode(this);
-            transition.setDuration(Duration.millis(3));
-            transition.play();
-            currentAnimation = null;
+                });
+                transition.play();
+            }
         } else {
+            Path p = new Path();
+            PathTransition transition = new PathTransition();
             int[] start, end;
             if (currentClass == null) {
                 start = Database.getRandRoom("ENTRANCE").randSpotInside();
                 end = nextClass.randSpotInside();
-
                 p.getElements().add(new MoveTo(start[0], start[1]));
-
                 if (!nextClass.isUpstairs()) {
                     p.getElements().add(new LineTo(end[0], end[1]));
                 } else {
                     Staircase nearestStaircase = Database.getNearestStaircase(nextClass);
                     int[] bottom = Room.randSpotInside(nearestStaircase.getBottomX(), nearestStaircase.getBottomY(), Data.stairRadius);
                     int[] top = Room.randSpotInside(nearestStaircase.getTopX(), nearestStaircase.getTopY(), Data.stairRadius);
-
                     p.getElements().add(new LineTo(bottom[0], bottom[1]));
                     p.getElements().add(new LineTo(top[0], top[1]));
                     p.getElements().add(new LineTo(end[0], end[1]));
@@ -80,7 +97,6 @@ public class Student extends Circle {
                 p.getElements().add(new MoveTo(start[0], start[1]));
                 if (currentClass.getBuilding().equals(nextClass.getBuilding())) {
                     if (currentClass.isUpstairs() == nextClass.isUpstairs()) {
-
                     } else if (currentClass.isUpstairs() && !nextClass.isUpstairs()) {
                         Staircase nearestStaircse = Database.getNearestStaircase(currentClass);
                         int[] top = Room.randSpotInside(nearestStaircse.getTopX(),nearestStaircse.getTopY(),Data.stairRadius);
@@ -93,7 +109,8 @@ public class Student extends Circle {
                         int[] bottom = Room.randSpotInside(nearestStaircse.getBottomX(),nearestStaircse.getBottomY(),Data.stairRadius);
                         p.getElements().add(new LineTo(bottom[0],bottom[1]));
                         p.getElements().add(new LineTo(top[0],top[1]));
-                    }
+                    } else
+                        System.out.println("???");
                 } else {
                     if (!currentClass.isUpstairs() && !nextClass.isUpstairs()) {
                     } else if (currentClass.isUpstairs() && !nextClass.isUpstairs()) {
@@ -119,22 +136,22 @@ public class Student extends Circle {
                         int[] bot2 = Room.randSpotInside(stair2.getBottomX(),stair2.getBottomY(),Data.stairRadius);
                         p.getElements().add(new LineTo(bot2[0],bot2[1]));
                         p.getElements().add(new LineTo(top2[0],top2[1]));
-                    }
+                    } else
+                        System.out.println("???");
                 }
                 p.getElements().add(new LineTo(end[0], end[1]));
             }
-            double fullDistance = Database.distBtwn(start[0],start[1],end[0],end[1]);
-            double ratio = fullDistance / walkingSpeed;
-            double time = ratio*2*Data.avgTime /1000.;
-            double timeDiff = Data.avgTime - time;
-            time = time + (timeDiff*Math.abs(timeDiff)/Data.avgTime);
-            transition.setPath(p);
+            double time = Database.distBtwn(start[0],start[1],end[0],end[1])*Data.avgTime /(500.*walkingSpeed);
+            time += ((Data.avgTime - time)*Math.abs(Data.avgTime - time)/Data.avgTime);
             currentAnimation = transition;
+            transition.setPath(p);
             transition.setNode(this);
             transition.setDuration(Duration.seconds(time));
-            transition.setOnFinished(event -> currentAnimation = null);
+            transition.setOnFinished(event -> {
+                currentAnimation = null;
+                currentClass = nextClass;
+            });
             transition.play();
-            currentClass = nextClass;
         }
     }
     public void setGenderColorEnabled(boolean a) {
@@ -154,5 +171,8 @@ public class Student extends Circle {
     }
     public Room getCurrentClass() {
         return currentClass;
+    }
+    public int getCurrentPeriod() {
+        return currentPeriod;
     }
 }
