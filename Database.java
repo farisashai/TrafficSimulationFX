@@ -4,7 +4,7 @@ import java.util.List;
 class Database {
     private static List<Room> roomList;
     private static List<Staircase> staircaseList;
-    static {
+    public static void initialize() {
         roomList = new LinkedList<>();
         staircaseList = new LinkedList<>();
         for (String[] room: Data.ROOMS) {
@@ -67,6 +67,7 @@ class Database {
     public static Room getRandClass(double probabilityPresent) {
         if (Math.random() > probabilityPresent)
             return null;
+
         return getRandClass();
     }
     public static List<Staircase> getStaircaseList() {
