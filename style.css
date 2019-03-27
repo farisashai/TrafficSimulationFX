@@ -1,27 +1,33 @@
-#a .track{
-    -fx-background-color:cyan;
+* {
+   color1:  black;
+   color2: gold;
 }
-#b .track{
-    -fx-background-color:cyan;
+.jfx-slider > .track {
+     -fx-background-color: #999;
 }
-#c .track{
-    -fx-background-color:cyan;
+#typeA > .thumb {
+     -fx-background-color: color1;
 }
-#d .track{
-    -fx-background-color:cyan;
+#typeA > .colored-track {
+     -fx-background-color: color1;
 }
-#e .track{
-    -fx-background-color:cyan;
+#typeA > .animated-thumb {
+     -fx-background-color: color1;
 }
-#f .track{
-    -fx-background-color:cyan;
+#typeA .slider-value {
+     -fx-fill: white;
+     -fx-stroke: white;
 }
-#g .track{
-    -fx-background-color:cyan;
+#typeB > .thumb {
+     -fx-background-color: color2;
 }
-#h .track{
-    -fx-background-color:cyan;
+#typeB > .colored-track {
+     -fx-background-color: color2;
 }
-#i .track{
-    -fx-background-color:cyan;
+#typeB > .animated-thumb {
+     -fx-background-color: color2;
+}
+#typeB .slider-value {
+     -fx-fill: color1;
+     -fx-stroke: color1;
 }
